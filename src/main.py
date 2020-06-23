@@ -1,11 +1,40 @@
 # Resolve the problem!!
 import string
+import random
 
 SYMBOLS = list('!"#$%&\'()*+,-./:;?@[]^_`{|}~')
+UPPERCASE = list('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+LOWERCASE = list('abcdefghijklmnopqrstuvwxyz')
+NUMBER = list('0123456789')
+
 
 
 def generate_password():
-    # Start coding here
+
+    password = []
+    length = random.randrange(8,17)
+    random.shuffle(NUMBER)
+    random.shuffle(SYMBOLS)
+    random.shuffle(UPPERCASE)
+    random.shuffle(LOWERCASE)
+    password.append(random.choice(UPPERCASE))
+    password.append(random.choice(LOWERCASE))
+    password.append(random.choice(NUMBER))
+    password.append(random.choice(SYMBOLS))
+    length  = length - 4
+    while length > 0:
+        choiceList = random.randrange(1,5)
+        if choiceList == 1:
+            password.append(random.choice(UPPERCASE))
+        elif choiceList == 2:
+            password.append(random.choice(LOWERCASE))
+        elif choiceList == 3:
+            password.append(random.choice(NUMBER))
+        elif choiceList == 4:
+            password.append(random.choice(SYMBOLS))
+        length -= 1
+    strpassword = "".join(password)
+    return password
 
 
 def validate(password):
